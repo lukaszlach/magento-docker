@@ -1,0 +1,28 @@
+concurrent = 1
+check_interval = 0
+
+[[runners]]
+  name = "debian"
+  url = "http://gitlab:7070/"
+  token = "a00d9928e7ae840b358758ad19de19"
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "debian:jessie"
+    privileged = false
+    disable_cache = false
+    volumes = ["/cache"]
+    extra_hosts = ["gitlab:172.11.11.200"]
+  [runners.cache]
+  [runners.kubernetes]
+    host = ""
+    cert_file = ""
+    key_file = ""
+    ca_file = ""
+    image = ""
+    namespace = ""
+    privileged = false
+    cpus = ""
+    memory = ""
+    service_cpus = ""
+    service_memory = ""

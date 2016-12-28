@@ -1,0 +1,20 @@
+bin/magento setup:install \
+    --backend-frontname="Magento" \
+    --key="biY8vdWx4w8KV5Q59380Fejy36l6ssUb" \
+    --db-host="mysql" \
+    --db-name="magento" \
+    --db-user="root" \
+    --db-password="root" \
+    --language="pl_PL" \
+    --currency="PLN" \
+    --timezone="Europe/Warsaw" \
+    --use-rewrites=1 \
+    --use-secure=0 \
+    --base-url="http://magento.local" \
+    --base-url-secure="https://magento.local" \
+    --admin-user=root \
+    --admin-password=1234abcd \
+    --admin-email=admin@llach.pl \
+    --admin-firstname=admin \
+    --admin-lastname=admin \
+    --cleanup-database

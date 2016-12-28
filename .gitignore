@@ -1,0 +1,5 @@
+.idea/
+mysql/data/*
+www/*
+gitlab/logs/*
+gitlab/data/*
