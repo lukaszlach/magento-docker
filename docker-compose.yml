@@ -1,6 +1,6 @@
 version: '2'
 
-# sphinx, memcache na sesje, redis?
+# sphinx
 
 services:
   storage:
@@ -16,6 +16,8 @@ services:
       - 80:6081
     environment:
       - BACKENDS=nginx
+      - BACKENDS_PROBE_INTERVAL=30s
+      - BACKENDS_PROBE_TIMEOUT=5s
     volumes:
       - ./varnish/config/varnish.vcl:/etc/varnish/conf.d/x-01-magento.vcl
       - ./varnish/config/magento.vcl:/etc/varnish/conf.d/x-02-magento.vcl
@@ -51,6 +53,20 @@ services:
       - mysql
       - memcache
 
+  php_cli:
+    build: ./php/docker
+    container_name: php_cli
+    volumes_from:
+      - storage
+    volumes:
+      - ./php/config/php.ini:/usr/local/etc/php/php.ini
+    working_dir: /srv/www
+    depends_on:
+      - mysql
+      - memcache
+    user: www-data
+    command: php
+
   mysql:
     image: mysql:latest
     container_name: mysql
@@ -76,6 +92,12 @@ services:
   memcache: # session storage
     image: memcached
     container_name: memcache
+    labels:
+      container_group: storage
+
+  redis: # dedicated for Magento frontend and page caches
+    image: redis:3.0.7
+    container_name: redis
     labels:
       container_group: storage
 
@@ -123,8 +145,6 @@ services:
   redis_log: # dedicated for logging bridge
     image: redis:3.0.7
     container_name: redis_log
-    ports:
-      - 6379:6379
     labels:
       container_group: storage
 
@@ -259,7 +279,7 @@ services:
     restart: always
     volumes:
       - ./gitlab-runner/config:/etc/gitlab-runner
-      - ./var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 networks:
   default:

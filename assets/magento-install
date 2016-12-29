@@ -20,7 +20,14 @@ bin/magento setup:install \
     --cleanup-database
 
 # switch session storage to memcached
+# switch frontend and page caches to Redis
 php -r '
     $env = require "app/etc/env.php";
     $env["session"] = ["save" => "memcached", "save_path" => "memcache:11211"];
+    $env["cache"]["frontend"]["default"] = ["backend" => "Cm_Cache_Backend_Redis", "backend_options" => ["server" => "redis", "port" => 6379]];
+    $env["cache"]["page_cache"] = ["backend" => "Cm_Cache_Backend_Redis", "backend_options" => ["server" => "redis", "port" => 6379, "database" => 1, "compress_data" => 0]];
     file_put_contents("app/etc/env.php", "<?php return ".var_export($env, true).";");'
+
+# send e-mails to Mailcatcher
+n98-magerun2 config:set system/smtp/host mailcatcher
+n98-magerun2 config:set system/smtp/port 1025
