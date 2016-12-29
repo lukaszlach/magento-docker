@@ -31,3 +31,5 @@ php -r '
 # send e-mails to Mailcatcher
 n98-magerun2 config:set system/smtp/host mailcatcher
 n98-magerun2 config:set system/smtp/port 1025
+
+n98-magerun2 sys:info

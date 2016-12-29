@@ -25,6 +25,6 @@ RUN composer global validate --no-ansi --no-check-all --no-check-publish --no-in
 RUN composer global install --no-ansi --no-interaction --no-progress --optimize-autoloader --prefer-dist
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.composer/vendor/bin
 
-RUN curl -o /root/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar
-RUN echo 'php /root/n98-magerun2.phar "$@"' > /usr/local/bin/n98-magerun2
+RUN curl -o /tmp/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar
+RUN echo 'php /tmp/n98-magerun2.phar "$@"' > /usr/local/bin/n98-magerun2
 RUN chmod +x /usr/local/bin/n98-magerun2
