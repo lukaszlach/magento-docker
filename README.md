@@ -24,9 +24,10 @@ make stop
 - http://localhost:3000/ - Grafana
 - http://localhost:9090/ - Prometheus
 - http://localhost:8080/ - cAdvisor
+- http://localhost:9100/ - NodeExporter
 - http://localhost:9093/ - AlertManager
 - http://localhost:7070/ - GitLab
-- http://magento.local:80/ - Magento frontend
+- http://magento.local:80/ - Magento frontend (Varnish - nginx - php7-fpm)
 - http://magento.local:80/Magento/ - Magento admin
 
 ## See other

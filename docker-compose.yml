@@ -5,6 +5,7 @@ version: '2'
 services:
   storage:
     image: busybox:latest
+    container_name: project
     volumes:
       - ./:/srv
 
@@ -20,6 +21,8 @@ services:
       - ./varnish/config/magento.vcl:/etc/varnish/conf.d/x-02-magento.vcl
     labels:
       container_group: web
+    depends_on:
+      - nginx
 
   nginx:
     image: nginx
@@ -31,6 +34,8 @@ services:
     working_dir: /srv/www
     labels:
       container_group: web
+    depends_on:
+      - php
 
   php:
     build: ./php/docker
@@ -42,6 +47,9 @@ services:
     working_dir: /srv/www
     labels:
       container_group: web
+    depends_on:
+      - mysql
+      - memcache
 
   mysql:
     image: mysql:latest
@@ -51,6 +59,12 @@ services:
     environment:
       - MYSQL_DATABASE=magento
       - MYSQL_ROOT_PASSWORD=root
+    labels:
+      container_group: storage
+
+  memcache:
+    image: memcached
+    container_name: memcache
     labels:
       container_group: storage
 
@@ -124,6 +138,8 @@ services:
   nodeexporter: # forwards host metrics to Prometheus
     image: prom/node-exporter
     container_name: nodeexporter
+    ports:
+      - 9100:9100
     expose:
       - 9100
     restart: always
