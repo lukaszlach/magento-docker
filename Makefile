@@ -6,9 +6,11 @@ build:
 	# create directories
 	sudo rm -rf www/ && mkdir www/; \
 	sudo rm -rf mysql/data/ && mkdir mysql/data;
+	sudo rm -rf sphinxsearch/data/ && mkdir sphinxsearch/data;
+	sudo rm -rf grafana/data/ && mkdir grafana/data;
 	# extract
 	cd ./www/; \
-	find ../data/ -name "Magento-CE-*.tar.gz" | head -n 1 | xargs tar zxf; \
+	find ../install/ -name "Magento-CE-*.tar.gz" | head -n 1 | xargs tar zxf; \
 	chmod -R 777 var/; \
 	find bin/ -type f | xargs chmod +x
 	# build images
@@ -46,16 +48,25 @@ php_logs:
 	docker logs -f php
 
 varnish_cli:
-	docker exec -ti docker_varnish_1 bash
+	docker exec -ti varnish bash
 
 nginx_cli:
-	docker exec -ti docker_web_1 bash
+	docker exec -ti nginx bash
 
 nginx_logs:
-	docker logs -f docker_web_1
+	docker logs -f nginx
 
-mysql_cli:
-	docker exec -ti docker_mysql_1 mysql -uroot -proot magento
+mysql_cmd:
+	docker exec -ti mysql mysql -uroot -proot magento
+
+sphinx_cli:
+	docker exec -ti sphinx bash
+
+sphinx_cmd:
+	docker exec -ti mysql mysql -hsphinx -P9306 -uroot -proot
+
+sphinx_logs:
+	docker logs -f sphinx
 
 magento_cli:
 	echo $@

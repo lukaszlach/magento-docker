@@ -26,9 +26,16 @@ make stop
 - http://localhost:8080/ - cAdvisor
 - http://localhost:9100/ - NodeExporter
 - http://localhost:9093/ - AlertManager
+- http://localhost:8088/ - MailCatcher
 - http://localhost:7070/ - GitLab
+- http://localhost:9099/ - Sphinx Search webproc
 - http://magento.local:80/ - Magento frontend (Varnish - nginx - php7-fpm)
 - http://magento.local:80/Magento/ - Magento admin
+
+## Todo
+
+- https://github.com/ausger/SphinxSearch
+- https://github.com/Doability/magento2dev/tree/552ea4fb32c5314bff48077361e519f633f47b58/vendor/mirasvit
 
 ## See other
 

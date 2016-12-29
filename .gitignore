@@ -3,3 +3,5 @@ mysql/data/*
 www/*
 gitlab/logs/*
 gitlab/data/*
+sphinxsearch/data/*
+!sphinxsearch/data/.gitkeep

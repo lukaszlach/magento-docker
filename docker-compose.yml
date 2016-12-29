@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/srv
 
-  varnish:
+  varnish: # caching load-balancer
     image: eeacms/varnish # https://github.com/eea/eea.docker.varnish
     container_name: varnish
     ports:
@@ -62,11 +62,30 @@ services:
     labels:
       container_group: storage
 
-  memcache:
+  sphinx: # full-text search
+    build: ./sphinxsearch/docker
+    container_name: sphinx
+    ports:
+      - 9099:8080
+    volumes:
+      - ./sphinxsearch/config/sphinx.conf:/etc/sphinxsearch/sphinx.conf
+      - ./sphinxsearch/data:/usr/local/sphinxsearch/data
+    labels:
+      container_group: storage
+
+  memcache: # session storage
     image: memcached
     container_name: memcache
     labels:
       container_group: storage
+
+  mailcatcher: # smtp server from frontend
+    build: ./mailcatcher/docker
+    container_name: mailcatcher
+    ports:
+      - 8088:1080
+    labels:
+      container_group: mail
 
   cron:
     image: lodatol/cron
