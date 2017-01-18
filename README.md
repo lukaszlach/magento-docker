@@ -12,11 +12,13 @@ Magento is pre-configured with following settings:
 
 ## Containers
 
-Replace `localhost` with domain you will be running project on. Magento is installed using `magento.local` hostname for both Magento versions supported. To access this hostname locally you will need to modify your `/etc/hosts` file so that `localhost` like looks like this:
+Magento is installed using `magento.local` hostname for both Magento versions supported. To access this hostname locally you will need to modify your `/etc/hosts` file so that `localhost` like looks like this:
 
 ```
 127.0.0.1 localhost magento.local
 ```
+
+Other containers are available on `localhost`, replace it with domain you will be running project on, if needed.
 
 ### Mail
 
