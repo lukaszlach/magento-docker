@@ -1,24 +1,22 @@
 # magento-docker
 
-## Installing
+Bootstrap Magento 1.9 or 2.1 from scratch using Docker. Starts up 22 container, all integrated together with Magento and supporting logging, monitoring and graphing.
+
+This repository is meant to be a start for a fresh Magento project. After bootstrap is done, you can initialize git repository under `www/` directory and proceed with your project.
+
+Magento is pre-configured with following settings:
+
+ * session storage is using Memcached server
+ * cache and page-cache is using Redis server
+ * mail settings are pointing MailCatcher
+
+## Containers
+
+Replace `localhost` with domain you will be running project on. Magento is installed using `magento.local` hostname for both Magento versions supported. To access this hostname locally you will need to modify your `/etc/hosts` file so that `localhost` like looks like this:
 
 ```
-git clone http://gitlab:9090/dynamite/magento-docker.git
-cd magento-docker
-make rebuild && make
+127.0.0.1 localhost magento.local
 ```
-
-## Running
-
-```
-# start / restart
-make
-
-# stop
-make stop
-```
-
-## Links
 
 ### Mail
 
@@ -48,20 +46,44 @@ make stop
 - http://magento.local:80/Magento/ - Magento 2.1 admin
 - http://magento.local:80/admin/ - Magento 1.9 admin
 
-## Passwords
+## Running
+
+To start a new project based on Magento 2.1 run:
+
+```
+git clone https://github.com/lukaszlach/magento-docker.git
+cd magento-docker/
+VERSION=2.1 make rebuild
+```
+
+To use the old 1.9 brach run:
+
+```
+git clone https://github.com/lukaszlach/magento-docker.git
+cd magento-docker/
+VERSION=1.9 make rebuild
+```
+
+After all steps are done you should be able to access `http://magento.local` in your web browser, as well as all other containers listening on ports listed above. Keep in mind to run this once only when starting new project, otherwise all your data will be lost.
+
+To stop all containers run:
+
+```
+make stop
+```
+
+To start existing project and all dependent containers run:
+
+```
+make start
+```
+
+## Default passwords
 
 * Magento admin
   * username: root
   * password: 1234abcd
+
 * Grafana
   * username: admin
   * password: admin
-
-## Todo
-
-- https://github.com/ausger/SphinxSearch
-- https://github.com/Doability/magento2dev/tree/552ea4fb32c5314bff48077361e519f633f47b58/vendor/mirasvit
-
-## See other
-
-- https://github.com/uschtwill/docker_monitoring_logging_alerting/blob/master/docker-compose.yml
