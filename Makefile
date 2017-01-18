@@ -47,6 +47,7 @@ install-1.9:
 	docker exec -u root php bash -c "echo '$$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx) magento.local' >> /etc/hosts"
 	docker exec -u www-data php sh /srv/assets/magento1-install
 	docker exec -u root nginx chown -R www-data:www-data /srv/www
+	docker exec -u root php n98-magerun sys:info
 
 composer:
 	docker exec php composer install -v

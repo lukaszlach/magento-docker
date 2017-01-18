@@ -135,6 +135,10 @@ docker exec php n98-magerun2 sys:info
   * username: admin
   * password: admin
 
+## Known limitations
+
+* locale and currency must be set by editing proper `assets/` script, this will be moved to variables when calling `make rebuild`
+
 ## Copyright and License (BSD 2-clause)
 
 Copyright (c) 2017, Łukasz Lach

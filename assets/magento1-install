@@ -17,5 +17,3 @@ php install.php -- \
     --admin_email "admin@llach.pl" \
     --admin_username "root" \
     --admin_password "1234abcd"
-
-n98-magerun sys:info
