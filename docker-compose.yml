@@ -1,7 +1,5 @@
 version: '2'
 
-# sphinx
-
 services:
   storage:
     image: busybox:latest

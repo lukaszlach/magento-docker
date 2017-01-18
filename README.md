@@ -2,7 +2,7 @@
 
 Bootstrap Magento 1.9 or 2.1 from scratch using Docker. Starts up 22 container, all integrated together with Magento and supporting logging, monitoring and graphing.
 
-This repository is meant to be a start for a fresh Magento project. After bootstrap is done, you can initialize git repository under `www/` directory and proceed with your project.
+This repository is meant to be a start for a fresh Magento project. After bootstrap is done, you can initialize git repository under `www/` directory and proceed with your project. Magento is installed using files from `install/` directory that contains compressed source code for both versions, replace it with your file to use other.
 
 Magento is pre-configured with following settings:
 
@@ -58,7 +58,7 @@ cd magento-docker/
 VERSION=2.1 make rebuild
 ```
 
-To use the old 1.9 brach run:
+To use the old 1.9 branch run:
 
 ```
 git clone https://github.com/lukaszlach/magento-docker.git
@@ -79,6 +79,15 @@ To start existing project and all dependent containers run:
 ```
 make start
 ```
+
+## Maintenance
+
+* `make php_cli` - Bash for PHP container
+* `make varnish_cli`
+* `make nginx_cli`
+* `make sphinx_cli`
+* `make mysql_cmd` - MySQL command-line interface
+* `make sphinx_cmd` - Sphinx command-line interface
 
 ## Default passwords
 

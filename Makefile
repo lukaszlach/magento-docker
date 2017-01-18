@@ -9,8 +9,8 @@ build-2.1:
 	export MAGENTO_VERSION_SHORT=2
 	# create directories
 	sudo rm -rf www/ && mkdir www/
-	sudo rm -rf mysql/data/ && mkdir mysql/data
-	sudo rm -rf sphinxsearch/data/ && mkdir sphinxsearch/data
+	sudo rm -rf mysql/data/ && mkdir -p mysql/data
+	sudo rm -rf sphinxsearch/data/ && mkdir -p sphinxsearch/data
 	# extract
 	cd ./www/; \
 	find ../install/ -name "Magento-CE-*.tar.gz" -name "*$(VERSION)*" | head -n 1 | xargs tar zxf
