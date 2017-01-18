@@ -1,8 +1,12 @@
 # magento-docker
 
-Bootstrap Magento 1.9 or 2.1 from scratch using Docker. Starts up 22 container, all integrated together with Magento and supporting logging, monitoring and graphing.
+&copy; 2017 Łukasz Lach
 
-This repository is meant to be a start for a fresh Magento project. After bootstrap is done, you can initialize git repository under `www/` directory and proceed with your project. Magento is installed using files from `install/` directory that contains compressed source code for both versions, replace it with your file to use other.
+Bootstrap Magento 1.9 or 2.1 from scratch using Docker. Starts up 22 containers, all integrated together with Magento and supporting logging, monitoring, alerting and graphing.
+
+This repository is meant to be a start for a fresh Magento project. After bootstrap is done, you can initialize git repository under `www/` directory and proceed with your project.
+
+Magento is installed using files from `install/` directory that contains compressed source code for both versions, replace it with your file to use other.
 
 Magento is pre-configured with following settings:
 
@@ -44,7 +48,7 @@ Other containers are available on `localhost`, replace it with domain you will b
 
 ### Project
 
-- http://magento.local:80/ - Magento frontend (Varnish - nginx - php7-fpm)
+- http://magento.local:80/ - Magento frontend (Varnish -> nginx -> php7-fpm)
 - http://magento.local:80/Magento/ - Magento 2.1 admin
 - http://magento.local:80/admin/ - Magento 1.9 admin
 
@@ -66,7 +70,9 @@ cd magento-docker/
 VERSION=1.9 make rebuild
 ```
 
-After all steps are done you should be able to access `http://magento.local` in your web browser, as well as all other containers listening on ports listed above. Keep in mind to run this once only when starting new project, otherwise all your data will be lost.
+These commands will install and pre-configure Magento instance. After all steps are done you should be able to access `http://magento.local` in your web browser, as well as all other containers listening on HTTP ports listed above.
+
+> Keep in mind to run `rebuild` once only when starting new project, otherwise all your data will be lost.
 
 To stop all containers run:
 
@@ -98,3 +104,15 @@ make start
 * Grafana
   * username: admin
   * password: admin
+
+## Copyright and License (BSD 2-clause)
+
+Copyright (c) 2017, Łukasz Lach
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
