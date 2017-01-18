@@ -1,0 +1,23 @@
+<?php
+//@codingStandardsIgnoreFile
+/** @var $block \Mirasvit\Search\Block\Index\Magento\Catalog\Category */
+
+$collection = $this->getCollection();
+?>
+<div class="search__result-index search__index-magento-catalog-category">
+    <ul>
+        <?php foreach ($collection as $item): ?>
+            <?php $path = $block->getFullPath($item->getId()) ?>
+
+            <li>
+                <div class="title">
+                    <?php foreach ($path as $parent): ?>
+                        <a href="<?= $parent->getUrl() ?>"><?= $parent->getName() ?></a>
+                    <?php endforeach ?>
+
+                    <a href="<?= $item->getUrl() ?>"><?= $item->getName() ?></a>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</div>

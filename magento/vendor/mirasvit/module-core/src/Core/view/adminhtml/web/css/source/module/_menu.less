@@ -1,0 +1,81 @@
+.mst-core-menu {
+    margin-left: -1.5rem;
+    margin-bottom: -1rem;
+    margin-top: -6px;
+
+    .admin__action-dropdown {
+        background: transparent;
+        color: #41362f;
+        font-size: 2.8rem;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0;
+        text-align: left;
+    }
+
+    &.active {
+        z-index: 1000;
+
+        .admin__action-dropdown {
+            border-color: @color-gray68;
+            background: #fff;
+
+            .admin__action-dropdown-text:after {
+                left: 0;
+                right: -6px;
+            }
+        }
+
+        .admin__action-dropdown-menu {
+            border-color: @color-gray68;
+            font-size: 1.3rem;
+            left: 0;
+            padding: 0.6rem;
+            right: auto;
+            width: 500px;
+
+            > li {
+                width: 50%;
+                float: left;
+
+                a {
+                    padding: 1.2rem 1rem;
+                    color: #41362f;
+                    display: block;
+                    text-decoration: none;
+
+                    &:hover {
+                        background: @color-gray89;
+                    }
+                }
+
+                &.separator {
+                    border-top: 1px solid @color-gray89;
+                    width: 100%;
+                    margin: 10px 0px;
+                }
+
+                ul {
+                    list-style: none;
+                    padding-left: 3rem;
+
+                    a {
+                        padding: 0.8rem 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .admin__action-dropdown {
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+.mirasvit-logo {
+    background-image: url('Mirasvit_Core::images/mirasvit-logo.svg');
+    background-size: auto 20px;
+    background-repeat: no-repeat;
+    padding-left: 25px;
+}

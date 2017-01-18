@@ -1,0 +1,63 @@
+<?php
+/** @var \Mirasvit\SearchAutocomplete\Block\Adminhtml\Config\Form\Field\Indexes $block */
+?>
+<td class="label">
+    <label><?php echo __('Searchable content') ?></label>
+</td>
+<td colspan="3">
+    <table class="sas__config-index" id="searchautocomplete-indexes">
+        <tr>
+            <th></th>
+            <th>Index</th>
+            <th>Status</th>
+            <th>Max Number of results</th>
+        </tr>
+        <?php foreach ($block->getIndexes() as $index): ?>
+            <tr>
+                <td class="col-order" data-role="draggable-handle">
+                    <div class="draggable-handle"></div>
+                    <input type="hidden" data-role="order"
+                        name="<?php echo $block->getNamePrefix($index) ?>[order]"
+                        value="<?php echo $index->getData('order') ?>">
+                </td>
+                <td class="col-title"><?php echo $index->getTitle() ?></td>
+                <td class="col-is_active">
+                    <div class="switcher" onselectstart="return false;">
+                        <input type="checkbox" id="<?php echo $index->getCode() ?>"
+                            name="<?php echo $block->getNamePrefix($index) ?>[is_active]"
+                            value="1"
+                            <?php if ($index->getData('is_active')): ?>checked<?php endif ?>>
+                        <label class="switcher-label"
+                            for="<?php echo $index->getCode() ?>"
+                            data-text-on="Enabled"
+                            data-text-off="Disabled"
+                            title="Index status"></label>
+                    </div>
+                </td>
+                <td class="col-limit">
+                    <input type="number" name="<?php echo $block->getNamePrefix($index) ?>[limit]"
+                        value="<?php echo $index->getData('limit') ?>"/>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+</td>
+<script>
+    require([
+        'jquery',
+        'collapsable'
+    ], function ($) {
+        var list = $('#searchautocomplete-indexes');
+        list.sortable({
+            axis: 'y',
+            handle: '[data-role=draggable-handle]',
+            items: 'tr',
+            update: function (event, data) {
+                list.find('[data-role=order]').each(function (i, el) {
+                    $(el).val(i + 1);
+                });
+            },
+            tolerance: 'pointer'
+        });
+    });
+</script>

@@ -1,0 +1,135 @@
+Add,Add
+"Match Expression","Match Expression"
+"Replace Expression","Replace Expression"
+"Replace Char","Replace Char"
+Word,Word
+"Find word","Find word"
+"Replace with","Replace with"
+"Add New Search Index","Add New Search Index"
+"Save Search Index","Save Search Index"
+"Save and Continue Edit","Save and Continue Edit"
+"Ignored Pages","Ignored Pages"
+"Database Connection","Database Connection"
+"Database Connection Name","Database Connection Name"
+"Table Prefix","Table Prefix"
+Options,Options
+"Search by parent categories names","Search by parent categories names"
+"Search by child products (for bundle, configurable products)","Search by child products (for bundle, configurable products)"
+"Search by product id","Search by product id"
+"Search by custom options","Search by custom options"
+"Push ""out of stock"" products to the end","Push ""out of stock"" products to the end"
+"Url Template","Url Template"
+Attributes,Attributes
+"General Information","General Information"
+Title,Title
+Index,Index
+Position,Position
+Status,Status
+Enabled,Enabled
+Disabled,Disabled
+"Search Index Information","Search Index Information"
+"Searchable Attributes","Searchable Attributes"
+"Additional Options","Additional Options"
+ID,ID
+Type,Type
+Action,Action
+Reindex,Reindex
+Ready,Ready
+"Reindex Required","Reindex Required"
+"Search Indexes","Search Indexes"
+"Manage Synonyms","Manage Synonyms"
+"Manage Stopwords","Manage Stopwords"
+Settings,Settings
+"Dictionary of stopwords","Dictionary of stopwords"
+"Add New Stopword","Add New Stopword"
+"Import Dictionary","Import Dictionary"
+Stopword,Stopword
+Store,Store
+Delete,Delete
+"Are you sure?","Are you sure?"
+Import,Import
+Dictionary,Dictionary
+"Dictionary of synonyms","Dictionary of synonyms"
+"Add New Synonym","Add New Synonym"
+Term,Term
+Synonyms,Synonyms
+"Use comma as separator","Use comma as separator"
+"Child block %1 not exists","Child block %1 not exists"
+"The search index has been deleted.","The search index has been deleted."
+"This search index no longer exists.","This search index no longer exists."
+"Edit Search Index ""%1""","Edit Search Index ""%1"""
+"New Search Index","New Search Index"
+"Reindex successfully completed.","Reindex successfully completed."
+"You saved the search index.","You saved the search index."
+"The stopword has been deleted.","The stopword has been deleted."
+"This stopword no longer exists.","This stopword no longer exists."
+"Imported %1 stopword(s).","Imported %1 stopword(s)."
+"Stopword ""%1""","Stopword ""%1"""
+"New Stopword","New Stopword"
+"Import Stopwords","Import Stopwords"
+"Please select stopword(s).","Please select stopword(s)."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"You saved the stopword.","You saved the stopword."
+"The synonym has been deleted.","The synonym has been deleted."
+"This synonym no longer exists.","This synonym no longer exists."
+"Imported %1 synonym(s).","Imported %1 synonym(s)."
+"Synonyms for ""%1""","Synonyms for ""%1"""
+"New Synonym","New Synonym"
+"Import Synonyms","Import Synonyms"
+"Please select synonym(s).","Please select synonym(s)."
+"You saved the synonym.","You saved the synonym."
+"Expression does not contain field '%1'","Expression does not contain field '%1'"
+"Invalid regular expression: ""%1"".","Invalid regular expression: ""%1""."
+"Built-in Sphinx Search Engine","Built-in Sphinx Search Engine"
+"External Sphinx Search Engine","External Sphinx Search Engine"
+"Enabled (*word*)","Enabled (*word*)"
+"Enabled at end (word*)","Enabled at end (word*)"
+"Enabled at start (*word)","Enabled at start (*word)"
+"Instance for '%1' not found","Instance for '%1' not found"
+"Wordpress Blog","Wordpress Blog"
+External,External
+"Post Title","Post Title"
+"Post Content","Post Content"
+"Post Excerpt","Post Excerpt"
+Category,Category
+Magento,Magento
+Name,Name
+Description,Description
+"Page Title","Page Title"
+"Meta Keywords","Meta Keywords"
+"Meta Description","Meta Description"
+Product,Product
+"Cms Page","Cms Page"
+Content,Content
+"Content Heading","Content Heading"
+"Line #%1: ","Line #%1: "
+"Stopword ""%1"" can contain only one word.","Stopword ""%1"" can contain only one word."
+"Stopword contains an invalid character: ""%1"".","Stopword contains an invalid character: ""%1""."
+"The length of synonym must be greater than 1.","The length of synonym must be greater than 1."
+"Synonym ""%1"" can contain only one word.","Synonym ""%1"" can contain only one word."
+"The page you requested was not found, but we have searched for relevant content.","The page you requested was not found, but we have searched for relevant content."
+"Add after","Add after"
+Attribute,Attribute
+Weight,Weight
+"Add Attribute","Add Attribute"
+"1 - minimum weight, 10 - maximum weight","1 - minimum weight, 10 - maximum weight"
+"%1 (%2)","%1 (%2)"
+"Sphinx Search","Sphinx Search"
+"Search Engine Configuration","Search Engine Configuration"
+"Search Engine","Search Engine"
+"Search Settings","Search Settings"
+"Wildcard search","Wildcard search"
+"Enable redirect from 404 to search results","Enable redirect from 404 to search results"
+"Redirect if Single Result","Redirect if Single Result"
+"Enable Google Sitelinks Search","Enable Google Sitelinks Search"
+"Enable search terms highlighting","Enable search terms highlighting"
+"Display Related Search Terms","Display Related Search Terms"
+"Max number of items in the result","Max number of items in the result"
+"Wildcard Exceptions","Wildcard Exceptions"
+"Replace words in search query","Replace words in search query"
+"""Not"" words","""Not"" words"
+"Long Tail Expressions","Long Tail Expressions"
+"Multi-Store Search Results","Multi-Store Search Results"
+"Enable Multi-Store Search Results","Enable Multi-Store Search Results"
+Stores,Stores
+Dictionary successfully processed.

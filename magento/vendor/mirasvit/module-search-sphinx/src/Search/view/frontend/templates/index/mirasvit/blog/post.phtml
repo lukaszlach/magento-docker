@@ -1,0 +1,27 @@
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Mirasvit\Search\Block\Index\Base $block */
+?>
+<div class="search__result-index search__index-external-wordpress-post">
+    <?= $block->getPager() ?>
+    <ol class="blog__post-list">
+        <?php /** @var \Mirasvit\Blog\Model\Post $post */ ?>
+        <?php foreach ($block->getCollection() as $post): ?>
+            <li class="blog__post-item">
+                <header class="blog__post-header">
+                    <h1 class="blog__post-title">
+                        <a href="<?= $post->getUrl() ?>"><?= $post->getName() ?></a>
+                    </h1>
+                </header>
+
+                <div class="blog__post-excerpt">
+                    <?= $post->getShortContent() ?>
+
+                    <a class="read-more" href="<?= $post->getUrl() ?>"><?= __('Read more...') ?></a>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ol>
+    <?= $block->getPager() ?>
+</div>
+

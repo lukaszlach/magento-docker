@@ -1,0 +1,23 @@
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Mirasvit\Search\Block\Index\Base $block */
+
+/** @var \Magefan\Blog\Block\Post\PostList\Item $postItem */
+$postItem = $this->getLayout()->createBlock('\Magefan\Blog\Block\Post\PostList\Item');
+?>
+<div class="search__result-index search__index-magefan-blog-post">
+    <div class="post-list-wrapper">
+        <ol class="post-list">
+            <?php /** @var \Magefan\Blog\Model\Post $post */ ?>
+            <?php foreach ($block->getCollection() as $post): ?>
+                <li>
+                    <?= $postItem
+                        ->setPost($post)
+                        ->setTemplate('post/list/item.phtml')
+                        ->toHtml()
+                    ?>
+                </li>
+            <?php endforeach ?>
+        </ol>
+    </div>
+</div>

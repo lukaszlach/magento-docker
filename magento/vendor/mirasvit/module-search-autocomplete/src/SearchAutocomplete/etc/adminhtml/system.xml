@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="searchautocomplete" translate="label" type="text" sortOrder="10" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <label>Search Autocomplete</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_SearchAutocomplete::searchautocomplete_config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General Configuration</label>
+
+                <field id="min_chars" translate="label comment tooltip" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Minimum number of characters to search</label>
+                </field>
+
+                <field id="delay" translate="label comment tooltip" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>The delay before start finding</label>
+                    <comment>>In milliseconds, e.g. 500 means 0.5 of second</comment>
+                </field>
+
+                <field id="index" translate="label comment tooltip" sortOrder="50" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <frontend_model>Mirasvit\SearchAutocomplete\Block\Adminhtml\Config\Form\Field\Index</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <group id="product" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Products Settings</label>
+
+                    <field id="show_price" translate="label comment tooltip" type="select" sortOrder="50"
+                           showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Show Price</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+
+                    <field id="show_image" translate="label comment tooltip" type="select" sortOrder="60"
+                           showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Show Thumbnail</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+
+                    <field id="show_rating" translate="label comment tooltip" type="select" sortOrder="70"
+                           showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Show Rating</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+
+                    <field id="show_description" translate="label comment tooltip" type="select" sortOrder="80"
+                           showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Show Description</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+
+                <group id="appearance" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Appearance</label>
+
+                    <field id="css" translate="label comment tooltip" type="textarea" sortOrder="10" showInDefault="1"
+                           showInWebsite="1" showInStore="1">
+                        <label>Additional CSS Styles</label>
+                    </field>
+                </group>
+            </group>
+
+            <group id="popular" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Hot Searches</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show Hot Searches</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default" translate="label comment tooltip" type="textarea" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Search queries</label>
+                    <comment>Comma separated search queries. Leave empty for show most popular queries.</comment>
+                </field>
+
+                <field id="ignored" translate="label comment tooltip" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Ignored words</label>
+                    <comment>Comma separated words. Ignore query, if search query contains any of these word.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

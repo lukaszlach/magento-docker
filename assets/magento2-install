@@ -1,0 +1,39 @@
+bin/magento setup:install \
+    --backend-frontname="Magento" \
+    --key="biY8vdWx4w8KV5Q59380Fejy36l6ssUb" \
+    --db-host="mysql" \
+    --db-name="magento" \
+    --db-user="root" \
+    --db-password="root" \
+    --language="pl_PL" \
+    --currency="PLN" \
+    --timezone="Europe/Warsaw" \
+    --use-rewrites=1 \
+    --use-secure=0 \
+    --base-url="http://magento.local" \
+    --base-url-secure="https://magento.local" \
+    --admin-user=root \
+    --admin-password=1234abcd \
+    --admin-email=admin@llach.pl \
+    --admin-firstname=admin \
+    --admin-lastname=admin \
+    --cleanup-database
+
+# switch session storage to memcached
+# switch frontend and page caches to Redis
+php -r '
+    $env = require "app/etc/env.php";
+    $env["session"] = ["save" => "memcached", "save_path" => "memcache:11211"];
+    $env["cache"]["frontend"]["default"] = ["backend" => "Cm_Cache_Backend_Redis", "backend_options" => ["server" => "redis", "port" => 6379]];
+    $env["cache"]["page_cache"] = ["backend" => "Cm_Cache_Backend_Redis", "backend_options" => ["server" => "redis", "port" => 6379, "database" => 1, "compress_data" => 0]];
+    file_put_contents("app/etc/env.php", "<?php return ".var_export($env, true).";");'
+
+# send e-mails to Mailcatcher
+n98-magerun2 config:set system/smtp/host mailcatcher
+n98-magerun2 config:set system/smtp/port 1025
+
+php -dmemory_limit=1G bin/magento setup:static-content:deploy -l pl_PL
+php bin/magento deploy:mode:set developer
+php bin/magento indexer:reindex
+
+n98-magerun2 sys:info

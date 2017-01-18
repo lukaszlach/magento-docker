@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--register indexes for sphinx-->
+    <type name="Mirasvit\SearchSphinx\Model\Adapter\Mapper">
+        <arguments>
+            <argument name="indexProviders" xsi:type="array">
+                <item name="catalogsearch_fulltext" xsi:type="object">Mirasvit\SearchSphinx\Model\Search\CatalogSearchIndexBuilder</item>
+                <item name="magento_catalog_category" xsi:type="object">Mirasvit\SearchSphinx\Model\Search\IndexBuilder</item>
+                <item name="magento_cms_page" xsi:type="object">Mirasvit\SearchSphinx\Model\Search\IndexBuilder</item>
+                <item name="external_wordpress_post" xsi:type="object">Mirasvit\SearchSphinx\Model\Search\IndexBuilder</item>
+                <item name="mirasvit_blog_post" xsi:type="object">Mirasvit\SearchSphinx\Model\Search\IndexBuilder</item>
+                <item name="magefan_blog_post" xsi:type="object">Mirasvit\SearchSphinx\Model\Search\IndexBuilder</item>
+            </argument>
+
+            <argument name="entityMetadata" xsi:type="object">Magento\Framework\Search\ObjectEntityMetadata</argument>
+        </arguments>
+    </type>
+
+    <!--register new search engine-->
+    <type name="Magento\Search\Model\AdapterFactory">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="sphinx" xsi:type="string">Mirasvit\SearchSphinx\Model\Adapter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Search\Model\Adminhtml\System\Config\Source\Engine">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="sphinx" xsi:type="string">External Sphinx Engine</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\EngineProvider">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="sphinx" xsi:type="string">Mirasvit\SearchSphinx\Model\ResourceModel\Engine</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="sphinx" xsi:type="string">Mirasvit\SearchSphinx\Model\Indexer\IndexerHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Framework\Search\ObjectEntityMetadata" type="Magento\Framework\Search\EntityMetadata">
+        <arguments>
+            <argument name="entityId" xsi:type="string">entity_id</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Search\Dynamic\IntervalFactory">
+        <arguments>
+            <argument name="intervals" xsi:type="array">
+                <item name="sphinx" xsi:type="string">Magento\Framework\Search\Adapter\Mysql\Aggregation\Interval</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--register console commands-->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="MakeConfigCommand" xsi:type="object">Mirasvit\SearchSphinx\Console\Command\MakeConfigCommand</item>
+                <item name="RestartCommand" xsi:type="object">Mirasvit\SearchSphinx\Console\Command\RestartCommand</item>
+                <item name="StartCommand" xsi:type="object">Mirasvit\SearchSphinx\Console\Command\StartCommand</item>
+                <item name="StatusCommand" xsi:type="object">Mirasvit\SearchSphinx\Console\Command\StatusCommand</item>
+                <item name="StopCommand" xsi:type="object">Mirasvit\SearchSphinx\Console\Command\StopCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,52 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Mirasvit\SearchAutocomplete\Model\Index\Pool">
+        <arguments>
+            <argument name="indexes" xsi:type="array">
+                <item name="magento_catalog_product" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\Magento\Catalog\Product</item>
+                    <item name="code" xsi:type="string">magento_catalog_product</item>
+                </item>
+                <item name="magento_catalog_category" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\Magento\Catalog\Category</item>
+                    <item name="code" xsi:type="string">magento_catalog_category</item>
+                </item>
+                <item name="magento_cms_page" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\Magento\Cms\Page</item>
+                    <item name="code" xsi:type="string">magento_cms_page</item>
+                </item>
+                <item name="magento_search_query" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\Magento\Search\Query</item>
+                    <item name="code" xsi:type="string">magento_search_query</item>
+                </item>
+                <item name="external_wordpress_post" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\External\Wordpress\Post</item>
+                    <item name="code" xsi:type="string">external_wordpress_post</item>
+                </item>
+                <item name="mirasvit_blog_post" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\Mirasvit\Blog\Post</item>
+                    <item name="code" xsi:type="string">mirasvit_blog_post</item>
+                </item>
+                <item name="mirasvit_kb_article" xsi:type="array">
+                    <item name="class" xsi:type="object">Mirasvit\SearchAutocomplete\Model\Index\Mirasvit\Kb\Article</item>
+                    <item name="code" xsi:type="string">mirasvit_kb_article</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="CacheCommand" xsi:type="object">Mirasvit\SearchAutocomplete\Console\Command\CacheCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Developer\Model\TemplateEngine\Plugin\DebugHints">
+        <arguments>
+            <argument name="debugHintsPath" xsi:type="string">dev/debug/template_hints_storefront</argument>
+        </arguments>
+    </type>
+</config>

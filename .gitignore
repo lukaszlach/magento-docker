@@ -5,3 +5,4 @@ gitlab/logs/*
 gitlab/data/*
 sphinxsearch/data/*
 !sphinxsearch/data/.gitkeep
+nginx/config/nginx-web.conf

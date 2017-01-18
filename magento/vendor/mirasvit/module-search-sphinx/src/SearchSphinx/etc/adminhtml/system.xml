@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="search">
+            <group id="engine">
+                <label>Search Engine Configuration</label>
+
+                <field id="host" translate="label comment tooltip" type="text" sortOrder="20" showInDefault="1">
+                    <label>Sphinx Host</label>
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+                </field>
+
+                <field id="port" translate="label comment tooltip" type="text" sortOrder="30" showInDefault="1">
+                    <label>Sphinx Port</label>
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+                </field>
+
+                <field id="bin_path" translate="label comment tooltip" type="text" sortOrder="40" showInDefault="1">
+                    <label>Sphinx Bin Path</label>
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+                </field>
+
+                <field id="status" translate="label comment tooltip" type="text" sortOrder="70" showInDefault="1">
+                    <label></label>
+                    <button_label>Check Status</button_label>
+                    <frontend_model>Mirasvit\SearchSphinx\Block\Adminhtml\Config\Form\Field\Command\Status</frontend_model>
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+                </field>
+
+                <field id="restart" translate="label comment tooltip" type="text" sortOrder="80" showInDefault="1">
+                    <label></label>
+                    <button_label>Restart Sphinx Daemon</button_label>
+                    <frontend_model>Mirasvit\SearchSphinx\Block\Adminhtml\Config\Form\Field\Command\Restart</frontend_model>
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+                </field>
+
+                <field id="clear" translate="label comment tooltip" type="text" sortOrder="85" showInDefault="1">
+                    <label></label>
+                    <button_label>Reset</button_label>
+                    <frontend_model>Mirasvit\SearchSphinx\Block\Adminhtml\Config\Form\Field\Command\Reset</frontend_model>
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+                </field>
+
+                <group id="extended" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Additional Configuration</label>
+
+                    <depends>
+                        <field id="engine">sphinx</field>
+                    </depends>
+
+                    <field id="custom_searchd" translate="label" type="textarea" sortOrder="41" showInDefault="1">
+                        <label>Additional searchd configuration</label>
+                    </field>
+
+                    <field id="custom_index" translate="label" type="textarea" sortOrder="41" showInDefault="1">
+                        <label>Additional index configuration</label>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

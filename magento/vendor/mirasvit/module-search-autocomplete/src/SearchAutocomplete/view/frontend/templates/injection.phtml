@@ -1,0 +1,21 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Mirasvit\SearchAutocomplete\Block\Injection $block */
+
+$helper = $this->helper('Magento\Search\Helper\Data');
+$currentCategory = $this->getRequest()->getParam('cat');
+?>
+
+    <div data-bind="scope: 'autocomplete'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+
+    <script type="text/x-magento-init">
+    <?php echo \Zend_Json_Encoder::encode($block->getJsConfig()) ?>
+
+    </script>
+
+<?php if ($block->getCssStyles() != ''): ?>
+    <style><?= $block->getCssStyles() ?></style>
+<?php endif ?>

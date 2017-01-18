@@ -1,0 +1,14 @@
+- term: 0
+  synonyms: zero,nought,cipher,cypher
+- term: 1
+  synonyms: one,ane,ace,single,unity
+- term: 10
+  synonyms: ten,tenner,decade
+- term: 100
+  synonyms: hundred,one hundred,hundred,century,one c,centred
+- term: 1000
+  synonyms: thousand,one thousand,one thousand,chiliad,g,grand,thou,yard
+- term: 10000
+  synonyms: ten thousand,myriad
+- term: 100000
+  synonyms: hundred thousand,lakh

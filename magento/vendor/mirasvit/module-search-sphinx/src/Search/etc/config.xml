@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <search>
+            <engine>
+                <engine>mysql2</engine>
+            </engine>
+            <advanced>
+                <wildcard>infix</wildcard>
+                <result_limit>10000</result_limit>
+                <noroute_to_search>1</noroute_to_search>
+                <terms_highlighting>1</terms_highlighting>
+                <google_sitelinks>1</google_sitelinks>
+                <redirect_on_single_result>1</redirect_on_single_result>
+                <show_related_terms>1</show_related_terms>
+            </advanced>
+        </search>
+    </default>
+</config>

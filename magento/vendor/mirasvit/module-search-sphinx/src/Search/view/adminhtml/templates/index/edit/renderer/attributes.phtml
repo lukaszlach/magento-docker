@@ -1,0 +1,122 @@
+<fieldset class="fieldset">
+    <legend class="legend"><span><?= __('Attributes') ?></span></legend>
+    <div id="manage-options-panel">
+        <table class="admin__control-table">
+            <thead>
+            <tr id="attribute-options-table">
+                <th class="col-default"><?= __('Attribute') ?></th>
+                <th class="col-default"><?= __('Weight') ?></th>
+                <th class="col-delete">&nbsp;</th>
+                <th class="col-default">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody data-role="options-container"></tbody>
+            <tfoot>
+            <th colspan="4" class="col-actions-add">
+                <button id="add_new_option_button" title="<?= __('Add Attribute') ?>"
+                    type="button" class="scalable add">
+                    <span><?= __('Add Attribute') ?></span>
+                </button>
+                <p style="float:right"><?= __('1 - minimum weight, 10 - maximum weight') ?></p>
+            </th>
+            </tfoot>
+        </table>
+    </div>
+    <script id="row-template" type="text/x-magento-template">
+        <tr>
+            <td class="col-default">
+                <select name="attributes[attribute][]" class="required-option" data-role="attribute">
+                    <?php foreach ($this->getAttributes() as $_value => $_label): ?>
+                        <option value="<?= $_value ?>" <% if (data.attribute == '<?= $_value ?>') { %>selected=true<% } %>>
+                            <?= $_label ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </td>
+            <td class="col-default">
+                <select name="attributes[weight][]" class="required-option">
+                    <?php for ($_i = 1; $_i <= 10; $_i++): ?>
+                        <option value="<?= $_i ?>" <% if (data.weight == '<?= $_i ?>') { %>selected=true<% } %>>
+                            <?= $_i ?>
+                        </option>
+                    <?php endfor ?>
+                </select>
+            </td>
+            <td class="col-delete">
+                <input type="hidden" class="delete-flag" name="attributes[delete][]" value=""/>
+                <button title="<?= __('Delete') ?>" type="button"
+                    class="action- scalable delete delete-option">
+                    <span><?= __('Delete') ?></span>
+                </button>
+            </td>
+            <td width="100%"></td>
+        </tr>
+    </script>
+    <script>
+        require([
+            'jquery',
+            'mage/template',
+            'jquery/ui'
+        ], function ($, mageTemplate) {
+            var attributeOption = {
+                table: $('#attribute-options-table'),
+                add: function (attribute, weight) {
+                    this.template = mageTemplate('#row-template');
+
+                    if (attribute == undefined) {
+                        data = {
+                            'attribute': '',
+                            'weight': 0
+                        };
+                    } else {
+                        data = {
+                            'attribute': attribute,
+                            'weight': weight
+                        };
+                    }
+
+                    $('[data-role=options-container]').append(this.template({data: data}));
+
+                    attributeOption.updateAttributes();
+                },
+
+                remove: function (event) {
+                    var tr = $(event.currentTarget).closest('tr');
+                    tr.remove();
+                    attributeOption.updateAttributes();
+                },
+
+                updateAttributes: function () {
+                    $('[data-role=options-container] option').removeAttr('disabled');
+                    $('[data-role=options-container] option').show();
+
+                    $('[data-role=attribute]').each(function (pKey, parent) {
+                        var pVal = $(parent).val();
+                        $('[data-role=attribute]').each(function (cKey, child) {
+                            if (pKey != cKey) {
+                                $(child).find('option[value="' + pVal + '"]').hide();
+                                $(child).find('option[value="' + pVal + '"]').attr('disabled', 'disabled');
+                            }
+                        });
+                    });
+                }
+            };
+
+            $('#add_new_option_button').on('click', attributeOption.add);
+
+            $('#manage-options-panel').on('click', '.delete-option', function (e) {
+                attributeOption.remove(e);
+            });
+
+            $('#manage-options-panel').on('change', '[data-role=attribute]', function (e) {
+                attributeOption.updateAttributes();
+            });
+
+            <?php foreach ($block->getAttributeWeights() as $attribute => $weight): ?>
+            attributeOption.add('<?= $attribute ?>', <?= intval($weight) ?>);
+            <?php endforeach ?>
+
+            window.attributeOption = attributeOption;
+        });
+    </script>
+</fieldset>

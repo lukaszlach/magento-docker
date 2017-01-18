@@ -1,0 +1,383 @@
+//
+//    Common
+//--------------------------------------
+@spinner-color-from: #D8D8D8;
+@spinner-color-to: #D8D8D8;
+
+& when (@media-common = true) {
+    .searchautocomplete__autocomplete {
+        @header-bg: #efefef;
+        @header-color: #575757;
+        @hover-bg: #f8f8f8;
+
+        display: none;
+        border: 1px solid #C2C2C2;
+        position: absolute;
+        top: 31px;
+        left: 0;
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 0 0 1px 1px;
+        min-height: 35px;
+        z-index: 1000;
+
+        &._active {
+            display: block;
+        }
+
+        .searchautocomplete__spinner {
+            display: none;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            margin-left: -90px;
+        }
+
+        &._loading {
+            .searchautocomplete__spinner {
+                display: block;
+            }
+        }
+
+        .empty-result {
+            background: @header-bg;
+            text-align: center;
+            padding: 8px 10px;
+            color: @header-color;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .show-all-results {
+            background: @header-bg;
+            text-align: center;
+
+            a {
+                padding: 8px 10px;
+                color: @header-color;
+                font-size: 1.2rem;
+                display: block;
+            }
+        }
+
+        .index-title {
+            background: @header-bg;
+            padding: 8px 10px;
+            text-align: right;
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+            color: @header-color;
+
+            .total {
+                font-weight: 600; //@font-weight__semibold;
+            }
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 0;
+                padding: .5rem 1rem;
+                cursor: pointer;
+                .lib-clearfix();
+
+                &._active {
+                    background: @hover-bg;
+                }
+
+                .title {
+                    font-weight: @font-weight__light;
+                }
+            }
+        }
+    }
+
+    .searchautocomplete__index-recent {
+        .index-title {
+            background: none;
+            position: absolute;
+            right: 0;
+            color: #999;
+        }
+    }
+
+    .searchautocomplete__item-magento_catalog_product {
+        img {
+            float: left;
+            height: 8rem;
+            width: 6.4rem;
+            margin-right: 1rem;
+        }
+
+        a.title {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #999;
+            height: 3rem;
+            line-height: 1.5rem;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            display: block;
+            float: right;
+            font-weight: 600;
+        }
+
+        .product-reviews-summary {
+            margin: 0;
+            .reviews-actions {
+                display: none;
+            }
+        }
+
+        &._active {
+            background: #fff !important;
+
+            a.title {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .searchautocomplete__item-magento_search_query {
+        .num_results {
+            float: right;
+        }
+    }
+
+    .searchautocomplete__index-popular {
+        .index-title {
+            background: none;
+            text-align: left;
+            color: #999;
+        }
+
+        ul {
+            li {
+                float: left;
+                padding: .5rem 0 0.5rem 1rem;
+
+                a {
+                    font-size: 1.3rem;
+                }
+
+                &:hover {
+                    background: none;
+                    cursor: pointer;
+
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .searchautocomplete__highlight {
+        font-weight: @font-weight__semibold;
+    }
+
+    .searchautocomplete__spinner {
+        position: relative;
+        width: 186px;
+        height: 20px;
+        margin: auto;
+
+        .spinner-item {
+            position: absolute;
+            top: 0;
+            background-color: @spinner-color-from;
+            width: 20px;
+            height: 20px;
+            animation-name: bounce_fountainG;
+            -o-animation-name: bounce_fountainG;
+            -ms-animation-name: bounce_fountainG;
+            -webkit-animation-name: bounce_fountainG;
+            -moz-animation-name: bounce_fountainG;
+            animation-duration: 0.645s;
+            -o-animation-duration: 0.645s;
+            -ms-animation-duration: 0.645s;
+            -webkit-animation-duration: 0.645s;
+            -moz-animation-duration: 0.645s;
+            animation-iteration-count: infinite;
+            -o-animation-iteration-count: infinite;
+            -ms-animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-iteration-count: infinite;
+            animation-direction: normal;
+            -o-animation-direction: normal;
+            -ms-animation-direction: normal;
+            -webkit-animation-direction: normal;
+            -moz-animation-direction: normal;
+            transform: scale(.3);
+            -o-transform: scale(.3);
+            -ms-transform: scale(.3);
+            -webkit-transform: scale(.3);
+            -moz-transform: scale(.3);
+            border-radius: 15px;
+            -o-border-radius: 15px;
+            -ms-border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+
+            &.spinner-item-1 {
+                left: 0;
+                animation-delay: 0.256s;
+                -o-animation-delay: 0.256s;
+                -ms-animation-delay: 0.256s;
+                -webkit-animation-delay: 0.256s;
+                -moz-animation-delay: 0.256s;
+            }
+
+            &.spinner-item-2 {
+                left: 20px;
+                animation-delay: 0.3225s;
+                -o-animation-delay: 0.3225s;
+                -ms-animation-delay: 0.3225s;
+                -webkit-animation-delay: 0.3225s;
+                -moz-animation-delay: 0.3225s;
+            }
+
+            &.spinner-item-3 {
+                left: 40px;
+                animation-delay: 0.389s;
+                -o-animation-delay: 0.389s;
+                -ms-animation-delay: 0.389s;
+                -webkit-animation-delay: 0.389s;
+                -moz-animation-delay: 0.389s;
+            }
+
+            &.spinner-item-4 {
+                left: 60px;
+                animation-delay: 0.4555s;
+                -o-animation-delay: 0.4555s;
+                -ms-animation-delay: 0.4555s;
+                -webkit-animation-delay: 0.4555s;
+                -moz-animation-delay: 0.4555s;
+            }
+
+            &.spinner-item-5 {
+                left: 80px;
+                animation-delay: 0.522s;
+                -o-animation-delay: 0.522s;
+                -ms-animation-delay: 0.522s;
+                -webkit-animation-delay: 0.522s;
+                -moz-animation-delay: 0.522s;
+            }
+
+            &.spinner-item-6 {
+                left: 100px;
+                animation-delay: 0.5885s;
+                -o-animation-delay: 0.5885s;
+                -ms-animation-delay: 0.5885s;
+                -webkit-animation-delay: 0.5885s;
+                -moz-animation-delay: 0.5885s;
+            }
+
+            &.spinner-item-7 {
+                left: 120px;
+                animation-delay: 0.645s;
+                -o-animation-delay: 0.645s;
+                -ms-animation-delay: 0.645s;
+                -webkit-animation-delay: 0.645s;
+                -moz-animation-delay: 0.645s;
+            }
+
+            &.spinner-item-8 {
+                left: 140px;
+                animation-delay: 0.7115s;
+                -o-animation-delay: 0.7115s;
+                -ms-animation-delay: 0.7115s;
+                -webkit-animation-delay: 0.7115s;
+                -moz-animation-delay: 0.7115s;
+            }
+        }
+    }
+
+    @keyframes bounce_fountainG {
+        0% {
+            transform: scale(1);
+            background-color: @spinner-color-from;
+        }
+
+        100% {
+            transform: scale(.3);
+            background-color: @spinner-color-to;
+        }
+    }
+
+    @-o-keyframes bounce_fountainG {
+        0% {
+            -o-transform: scale(1);
+            background-color: @spinner-color-from;
+        }
+
+        100% {
+            -o-transform: scale(.3);
+            background-color: @spinner-color-to;
+        }
+    }
+
+    @-ms-keyframes bounce_fountainG {
+        0% {
+            -ms-transform: scale(1);
+            background-color: @spinner-color-from;
+        }
+
+        100% {
+            -ms-transform: scale(.3);
+            background-color: @spinner-color-to;
+        }
+    }
+
+    @-webkit-keyframes bounce_fountainG {
+        0% {
+            -webkit-transform: scale(1);
+            background-color: @spinner-color-from;
+        }
+
+        100% {
+            -webkit-transform: scale(.3);
+            background-color: @spinner-color-to;
+        }
+    }
+
+    @-moz-keyframes bounce_fountainG {
+        0% {
+            -moz-transform: scale(1);
+            background-color: @spinner-color-from;
+        }
+
+        100% {
+            -moz-transform: scale(.3);
+            background-color: @spinner-color-to;
+        }
+    }
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .searchautocomplete__autocomplete {
+        width: 100%;
+    }
+}
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .searchautocomplete__autocomplete {
+        //margin: 15px;
+    }
+}

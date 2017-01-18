@@ -1,0 +1,14 @@
+<?php if ($this->isEnabled()): ?>
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "<?= $block->getBaseUrl() ?>",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "<?= urldecode($block->getTargetUrl()) ?>",
+     "query-input": "required name=search_term_string"
+   }
+}
+</script>
+<?php endif ?>

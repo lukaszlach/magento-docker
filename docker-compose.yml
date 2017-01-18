@@ -82,7 +82,7 @@ services:
     build: ./sphinxsearch/docker
     container_name: sphinx
     ports:
-      - 9099:8080
+      - 6007:8080
     volumes:
       - ./sphinxsearch/config/sphinx.conf:/etc/sphinxsearch/sphinx.conf
       - ./sphinxsearch/data:/usr/local/sphinxsearch/data
@@ -105,7 +105,7 @@ services:
     build: ./mailcatcher/docker
     container_name: mailcatcher
     ports:
-      - 8088:1080
+      - 6009:1080
     labels:
       container_group: mail
 
@@ -121,7 +121,7 @@ services:
     image: kibana:4.5.4
     container_name: kibana
     ports:
-      - 5601:5601
+      - 6008:5601
     labels:
       container_group: logging
 
@@ -178,7 +178,7 @@ services:
     image: prom/node-exporter
     container_name: nodeexporter
     ports:
-      - 9100:9100
+      - 6001:9100
     expose:
       - 9100
     restart: always
@@ -189,9 +189,7 @@ services:
     image: google/cadvisor
     container_name: cadvisor
     ports:
-      - 8080:8080
-    expose:
-      - 8080
+      - 6002:8080
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:rw"
@@ -205,9 +203,7 @@ services:
     image: prom/prometheus
     container_name: prometheus
     ports:
-      - 9090:9090
-    expose:
-      - 9090
+      - 6003:9090
     volumes:
       #- ./prometheus/data:/prometheus
       - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
@@ -229,9 +225,7 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - 3000:3000
-    expose:
-      - 3000
+      - 6004:3000
     volumes:
       - ./grafana/data:/var/lib/grafana
     restart: always
@@ -245,9 +239,7 @@ services:
     image: prom/alertmanager
     container_name: alertmanager
     ports:
-      - 9093:9093
-    expose:
-      - 9093
+      - 6005:9093
     restart: always
     volumes:
       - ./alertmanager/config:/etc/alertmanager/
@@ -255,6 +247,16 @@ services:
     command:
       - '-config.file=/etc/alertmanager/config.yml'
       - '-storage.path=/tmp'
+    labels:
+      container_group: monitoring
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    ports:
+      - 6006:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     labels:
       container_group: monitoring
 

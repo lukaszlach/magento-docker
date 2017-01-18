@@ -1,0 +1,16 @@
+"Sphinx configuration file successfully generated.","Sphinx configuration file successfully generated."
+"Path to configuration file: %1","Path to configuration file: %1"
+"Sphinx daemon successfully restarted.","Sphinx daemon successfully restarted."
+Error.,Error.
+"Sphinx daemon successfully started.","Sphinx daemon successfully started."
+"Sphinx daemon running.","Sphinx daemon running."
+"Sphinx daemon not running.","Sphinx daemon not running."
+"Sphinx daemon successfully stopped.","Sphinx daemon successfully stopped."
+"PHP function ""exec"" not available","PHP function ""exec"" not available"
+"Searchd not found at %1","Searchd not found at %1"
+"File %1 does not writable","File %1 does not writable"
+"Directory %1 does not writable","Directory %1 does not writable"
+"Sphinx Host","Sphinx Host"
+"Sphinx Port","Sphinx Port"
+"Sphinx Bin Path","Sphinx Bin Path"
+Dictionary successfully processed.

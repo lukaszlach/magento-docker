@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Mview\View">
+        <plugin name="onChangeIndexMode" type="Mirasvit\Misspell\Plugin\OnChangeIndexModePlugin"/>
+    </type>
+</config>

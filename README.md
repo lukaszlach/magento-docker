@@ -20,17 +20,42 @@ make stop
 
 ## Links
 
-- http://localhost:5601/ - Kibana
-- http://localhost:3000/ - Grafana
-- http://localhost:9090/ - Prometheus
-- http://localhost:8080/ - cAdvisor
-- http://localhost:9100/ - NodeExporter
-- http://localhost:9093/ - AlertManager
-- http://localhost:8088/ - MailCatcher
+### Mail
+
+- http://localhost:6009/ - MailCatcher
+
+### Logging
+
+- http://localhost:6008/ - Kibana
+
+### Monitoring
+
+- http://localhost:6001/ - NodeExporter
+- http://localhost:6002/ - cAdvisor
+- http://localhost:6003/ - Prometheus
+- http://localhost:6004/ - Grafana
+- http://localhost:6005/ - AlertManager
+- http://localhost:6006/ - Portainer
+- http://localhost:6007/ - Sphinx Search webproc
+
+### Repository
+
 - http://localhost:7070/ - GitLab
-- http://localhost:9099/ - Sphinx Search webproc
+
+### Project
+
 - http://magento.local:80/ - Magento frontend (Varnish - nginx - php7-fpm)
-- http://magento.local:80/Magento/ - Magento admin
+- http://magento.local:80/Magento/ - Magento 2.1 admin
+- http://magento.local:80/admin/ - Magento 1.9 admin
+
+## Passwords
+
+* Magento admin
+  * username: root
+  * password: 1234abcd
+* Grafana
+  * username: admin
+  * password: admin
 
 ## Todo
 

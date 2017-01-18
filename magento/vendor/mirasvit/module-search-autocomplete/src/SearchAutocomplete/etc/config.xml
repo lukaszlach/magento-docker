@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <searchautocomplete>
+            <general>
+                <min_chars>3</min_chars>
+                <delay>300</delay>
+                <index>a:2:{s:20:"magento_search_query";a:3:{s:5:"order";s:1:"1";s:9:"is_active";s:1:"1";s:5:"limit";s:1:"4";}s:22:"catalogsearch_fulltext";a:3:{s:5:"order";s:1:"4";s:9:"is_active";s:1:"1";s:5:"limit";s:1:"8";}}</index>
+                <product>
+                    <show_price>1</show_price>
+                    <show_image>1</show_image>
+                    <show_rating>1</show_rating>
+                    <show_description>1</show_description>
+                </product>
+            </general>
+            <popular>
+                <enabled>1</enabled>
+            </popular>
+        </searchautocomplete>
+    </default>
+</config>

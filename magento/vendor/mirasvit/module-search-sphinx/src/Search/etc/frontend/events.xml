@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_front_send_response_before">
+        <observer name="search_noroute" instance="Mirasvit\Search\Observer\NorouteObserver" />
+        <observer name="search_singleresult" instance="Mirasvit\Search\Observer\SingleResultObserver" />
+    </event>
+</config>

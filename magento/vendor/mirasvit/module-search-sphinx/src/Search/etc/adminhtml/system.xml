@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="search" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sphinx Search</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_Search::search_config</resource>
+
+            <group id="engine" translate="label" type="text" sortOrder="10" showInDefault="1">
+                <label>Search Engine Configuration</label>
+
+                <field id="engine" translate="label" type="select" sortOrder="19" showInDefault="1">
+                    <label>Search Engine</label>
+                    <source_model>Magento\Search\Model\Adminhtml\System\Config\Source\Engine</source_model>
+                </field>
+            </group>
+
+            <group id="advanced" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Settings</label>
+
+                <field id="wildcard" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Wildcard search</label>
+                    <source_model>Mirasvit\Search\Model\Config\Source\Wildcard</source_model>
+                </field>
+
+                <field id="noroute_to_search" translate="label" type="select" sortOrder="20" showInDefault="1">
+                    <label>Enable redirect from 404 to search results</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="redirect_on_single_result" translate="label" type="select" sortOrder="30" showInDefault="1">
+                    <label>Redirect if Single Result</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="google_sitelinks" translate="label" type="select" sortOrder="40" showInDefault="1">
+                    <label>Enable Google Sitelinks Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                            <a href="https://developers.google.com/structured-data/slsb-overview" target="_blank">
+                                https://developers.google.com/structured-data/slsb-overview
+                            </a>
+                        ]]>
+                    </comment>
+                </field>
+
+                <field id="terms_highlighting" translate="label comment" type="select" sortOrder="50" showInDefault="1">
+                    <label>Enable search terms highlighting</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="show_related_terms" translate="label comment" type="select" sortOrder="60" showInDefault="1">
+                    <label>Display Related Search Terms</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="results_limit" translate="label comment tooltip" type="text" sortOrder="70" showInDefault="1">
+                    <label>Max number of items in the result</label>
+                </field>
+
+                <field id="wildcard_exceptions" translate="label comment tooltip" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Wildcard Exceptions</label>
+                    <frontend_model>Mirasvit\Search\Block\Adminhtml\Config\Form\Field\WildcardExceptions</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="replace_words" translate="label comment tooltip" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Replace words in search query</label>
+                    <frontend_model>Mirasvit\Search\Block\Adminhtml\Config\Form\Field\ReplaceWords</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="not_words" translate="label comment tooltip" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>"Not" words</label>
+                    <frontend_model>Mirasvit\Search\Block\Adminhtml\Config\Form\Field\NotWords</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="long_tail_expressions" translate="label comment tooltip" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Long Tail Expressions</label>
+                    <frontend_model>Mirasvit\Search\Block\Adminhtml\Config\Form\Field\LongTailExpressions</frontend_model>
+                    <backend_model>Mirasvit\Search\Model\Config\Form\Field\LongTailExpressions</backend_model>
+                    <tooltip>
+                        <![CDATA[
+                        For example, we have a product "Canon PowerShot SX500 IS".<br>
+                        If customer searches for ‘Canon PowerShot SX-500IS’, default search will not find our product.<br>
+                        Using "long-tail" search, the search function recognizes char combination pattern during reindex and search (by match expression) and replace special chars (replace expression) to empty or any other char (replace char).<br>
+                        So during reindexing "SX500 IS" will be converted to "SX500IS" and during search "SX-500IS" will be converted to "SX500IS" too. And search will be able to find product by several combinations of product's name spelling.
+                        ]]>
+                    </tooltip>
+                </field>
+
+            </group>
+
+            <group id="multi_store_mode" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Multi-Store Search Results</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Multi-Store Search Results</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="stores" translate="label" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Stores</label>
+                    <source_model>Magento\Config\Model\Config\Source\Store</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

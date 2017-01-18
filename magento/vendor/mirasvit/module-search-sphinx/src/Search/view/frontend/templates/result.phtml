@@ -1,0 +1,41 @@
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Mirasvit\Search\Block\Result $block */
+
+$indexes = $block->getIndexes();
+$currentContent = $block->getCurrentContent();
+$tabsCnt = 0;
+?>
+
+<ul class="search__result-tabs">
+    <?php foreach ($indexes as $index): ?>
+        <?php $collection = $index->getIndexInstance()->getSearchCollection(); ?>
+
+        <?php if ($collection->getSize() || $index->getCode() == 'catalogsearch_fulltext'): ?>
+            <?php if ($index->getCode() == $block->getCurrentIndex()->getCode()
+                && $index->getStoreId() == $block->getCurrentIndex()->getStoreId()
+            ): ?>
+                <li>
+                    <a class="active" href="#">
+                        <?= __($index->getTitle()) ?>
+                    </a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a href="<?= $block->getIndexUrl($index) ?>">
+                        <?= __('%1 (%2)', $index->getTitle(), $collection->getSize()) ?>
+                    </a>
+                </li>
+                <?php $tabsCnt++ ?>
+            <?php endif ?>
+        <?php endif ?>
+    <?php endforeach ?>
+</ul>
+
+<?= $currentContent ?>
+
+<?php if ($block->getCurrentIndexSize() == 0 && $tabsCnt > 0): ?>
+    <div class="message notice">
+        <div>Please select other tab to see more results</div>
+    </div>
+<?php endif ?>

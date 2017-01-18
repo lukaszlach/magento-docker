@@ -1,0 +1,44 @@
+<div class="searchautocomplete__autocomplete" data-bind="css: {_active: isVisible, _loading: loading}">
+    <div class="searchautocomplete__spinner">
+        <div class="spinner-item spinner-item-1"></div>
+        <div class="spinner-item spinner-item-2"></div>
+        <div class="spinner-item spinner-item-3"></div>
+        <div class="spinner-item spinner-item-4"></div>
+        <div class="spinner-item spinner-item-5"></div>
+        <div class="spinner-item spinner-item-6"></div>
+        <div class="spinner-item spinner-item-7"></div>
+        <div class="spinner-item spinner-item-8"></div>
+    </div>
+
+    <div data-bind="visible: result().totalItems > 0">
+        <div data-bind="foreach: { data: result().indexes, as: 'index' }">
+            <div data-bind="visible: index.totalItems, attr: {class: 'searchautocomplete__index-' + index.code}">
+                <div class="index-title">
+                    <span data-bind="text: index.title"></span>
+                    <span data-bind="visible: index.isShowTotals">
+                        (<span class="total" data-bind="text: index.totalItems"></span>)
+                    </span>
+                </div>
+
+                <ul data-bind="foreach: { data: index.items, as: 'item' }">
+                    <li data-bind="
+                        template: { name: 'Mirasvit_SearchAutocomplete/index/' + index.code, data: item },
+                        attr: {class: 'searchautocomplete__item-' + index.code},
+                        event: { mouseover: onMouseOver, mouseout: onMouseOut, mousedown: onClick },
+                        css: {_active: active}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="show-all-results" data-bind="visible: result().isShowAll">
+            <a data-bind="attr: { href: result().urlAll }">
+                <span data-bind="text: result().textAll"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="empty-result" data-bind="visible: result().totalItems == 0 && !loading()">
+        <span data-bind="text: result().textEmpty"></span>
+    </div>
+</div>

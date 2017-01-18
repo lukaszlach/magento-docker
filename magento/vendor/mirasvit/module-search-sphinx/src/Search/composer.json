@@ -1,0 +1,28 @@
+{
+  "name": "mirasvit/module-search-sphinx",
+  "description": "Search Sphinx",
+  "require": {
+    "magento/module-store": "100.0.*|100.1.*",
+    "magento/module-backend": "100.0.*|100.1.*",
+    "magento/framework": "100.1.*",
+    "mirasvit/module-core": "^1.2",
+    "symfony/yaml": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.34",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "src/Search/registration.php",
+      "src/SearchMysql/registration.php",
+      "src/SearchSphinx/registration.php"
+    ],
+    "psr-4": {
+      "Mirasvit\\Search\\": "src/Search",
+      "Mirasvit\\SearchMysql\\": "src/SearchMysql",
+      "Mirasvit\\SearchSphinx\\": "src/SearchSphinx"
+    }
+  }
+}

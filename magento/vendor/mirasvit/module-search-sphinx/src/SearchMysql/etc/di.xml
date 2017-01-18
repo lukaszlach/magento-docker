@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="mysql2" xsi:type="string">Mirasvit\SearchMysql\Model\Indexer\IndexerHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--register new search engine-->
+    <type name="Magento\Search\Model\AdapterFactory">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="mysql2" xsi:type="string">Mirasvit\SearchMysql\Model\Adapter</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\EngineProvider">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="mysql2" xsi:type="string">Magento\CatalogSearch\Model\ResourceModel\Engine</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Search\Model\Adminhtml\System\Config\Source\Engine">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="mysql2" xsi:type="string">Built-in Sphinx Engine</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--<type name="Magento\Framework\Search\Adapter\Mysql\Mapper">-->
+    <!--<arguments>-->
+    <!--<argument name="indexProviders" xsi:type="array">-->
+    <!--<item name="magento_catalog_category" xsi:type="object">Mirasvit\SearchMysql\Model\Search\IndexBuilder</item>-->
+    <!--<item name="magento_cms_page" xsi:type="object">Mirasvit\SearchMysql\Model\Search\IndexBuilder</item>-->
+    <!--<item name="external_wordpress_post" xsi:type="object">Mirasvit\SearchMysql\Model\Search\IndexBuilder</item>-->
+    <!--</argument>-->
+    <!--</arguments>-->
+    <!--</type>-->
+
+
+    <!--<type name="Magento\Framework\Search\Adapter\Mysql\Aggregation\DataProviderContainer">-->
+    <!--<arguments>-->
+    <!--<argument name="dataProviders" xsi:type="array">-->
+    <!--<item name="magento_catalog_category" xsi:type="object">Mirasvit\SearchSphinx\Model\Adapter\Aggregation\DataProvider</item>-->
+    <!--<item name="magento_cms_page" xsi:type="object">Mirasvit\SearchSphinx\Model\Adapter\Aggregation\DataProvider</item>-->
+    <!--<item name="external_wordpress_post" xsi:type="object">Mirasvit\SearchSphinx\Model\Adapter\Aggregation\DataProvider</item>-->
+    <!--</argument>-->
+    <!--</arguments>-->
+    <!--</type>-->
+
+    <preference for="Magento\Framework\Search\Adapter\Mysql\Query\Builder\Match"
+                type="Mirasvit\SearchMysql\Model\Adapter\Query\Builder\Match"/>
+
+    <preference for="Magento\Framework\Search\Adapter\Mysql\ScoreBuilder"
+                type="Mirasvit\SearchMysql\Model\Adapter\ScoreBuilder"/>
+
+    <type name="Magento\Framework\Search\Dynamic\IntervalFactory">
+        <arguments>
+            <argument name="intervals" xsi:type="array">
+                <item name="mysql2" xsi:type="string">Magento\Framework\Search\Adapter\Mysql\Aggregation\Interval</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

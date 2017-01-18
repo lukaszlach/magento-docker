@@ -1,0 +1,21 @@
+<?php
+$queryText = $this->getQueryText();
+?>
+
+<?php if ($this->getMisspellText()): ?>
+    <p class="message notice">
+        <?php echo __("Your search '<strong>%1</strong>' did not match any products.", $this->getMisspellText()) ?>
+        <?php echo __("Did you mean:") ?>&nbsp;
+        '<strong><a href="<?php echo $this->getQueryUrl($queryText) ?>"><?php echo $queryText ?></a></strong>'
+    </p>
+<?php endif ?>
+
+
+<?php if ($this->getFallbackText()): ?>
+    <p class="message notice">
+        <?php echo __("Your search '<strong>%1</strong>' did not match any products.", $block->escapeHtml($this->getFallbackText())) ?>
+        <br>
+        <?php echo __('Showing results using some of your search terms') ?>
+        '<strong><?php echo $this->highlight($this->getFallbackText(), $queryText, 'strike') ?></strong>'.
+    </p>
+<?php endif ?>

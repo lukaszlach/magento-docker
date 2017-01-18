@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Search::search" title="Search Management" module="Mirasvit_Search"
+             sortOrder="50" parent="Magento_Backend::system" resource="Mirasvit_Search::search"/>
+
+        <add id="Mirasvit_Search::search_index" title="Search Indexes" module="Mirasvit_Search"
+             sortOrder="10" parent="Mirasvit_Search::search" action="search/index"
+             resource="Mirasvit_Search::search_index"/>
+
+        <add id="Mirasvit_Search::search_synonym" title="Manage Synonyms"
+             module="Mirasvit_Search" sortOrder="20" parent="Mirasvit_Search::search"
+             action="search/synonym" resource="Mirasvit_Search::search_synonym"/>
+
+        <add id="Mirasvit_Search::search_stopword" title="Manage Stopwords"
+             module="Mirasvit_Search" sortOrder="30" parent="Mirasvit_Search::search"
+             action="search/stopword" resource="Mirasvit_Search::search_synonym"/>
+
+        <add id="Mirasvit_Search::search_config" title="Settings" module="Mirasvit_Search"
+             sortOrder="100" parent="Mirasvit_Search::search"
+             action="adminhtml/system_config/edit/section/search" resource="Mirasvit_Search::search_config"/>
+    </menu>
+</config>

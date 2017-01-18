@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="mst_misspell" view_id="mst_misspell" class="Mirasvit\Misspell\Model\Indexer">
+        <title translate="true">Search Spell-Correction</title>
+        <description translate="true">Rebuild search spell-correction words index</description>
+    </indexer>
+</config>

@@ -1,0 +1,21 @@
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Mirasvit\Search\Block\Index\Base $block */
+?>
+<div class="search__result-index search__index-external-wordpress-post">
+    <?= $block->getPager() ?>
+    <ul>
+        <?php foreach ($block->getCollection() as $post) : ?>
+            <li>
+                <div class="title">
+                    <a href="<?= $post->getUrl() ?>">
+                        <?= $post->getPostTitle() ?></a>
+                </div>
+                <div class="content">
+                    <?= $this->truncate($post->getTeaser()) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+    <?= $block->getPager() ?>
+</div>

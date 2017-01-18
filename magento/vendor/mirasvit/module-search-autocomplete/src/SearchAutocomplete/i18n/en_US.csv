@@ -1,0 +1,21 @@
+Products,Products
+"Popular suggestions","Popular suggestions"
+"Show all %1 results →","Show all %1 results →"
+"Sorry, nothing found for ""%1"".","Sorry, nothing found for ""%1""."
+"Searchable content","Searchable content"
+Search,Search
+"Search Autocomplete","Search Autocomplete"
+"General Configuration","General Configuration"
+"Minimum number of characters to search","Minimum number of characters to search"
+"The delay before start finding","The delay before start finding"
+">In milliseconds, e.g. 500 means 0.5 of second",">In milliseconds, e.g. 500 means 0.5 of second"
+"Products Settings","Products Settings"
+"Show Price","Show Price"
+"Show Thumbnail","Show Thumbnail"
+"Show Rating","Show Rating"
+"Show Description","Show Description"
+Appearance,Appearance
+"Additional CSS Styles","Additional CSS Styles"
+"Hot Searches","Hot Searches"
+"Show Hot Searches","Show Hot Searches"
+"Comma separated search queries. Leave empty for show most popular queries.","Comma separated search queries. Leave empty for show most popular queries."

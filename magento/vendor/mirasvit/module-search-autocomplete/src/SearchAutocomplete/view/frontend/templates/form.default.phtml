@@ -1,0 +1,62 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Mirasvit\SearchAutocomplete\Block\Form $block */
+
+$helper = $this->helper('Magento\Search\Helper\Data');
+$currentCategory = $this->getRequest()->getParam('cat');
+?>
+<div data-bind="scope: 'searchautocomplete__form'">
+    <div class="block block-search searchautocomplete__form"
+        data-bind="css: {_active: hasFocus, _loaded: delay}">
+        <div class="block block-title"><strong><?php echo __('Search') ?></strong></div>
+        <div class="block block-content">
+            <form class="form minisearch" id="search_mini_form" action="<?php echo $helper->getResultUrl() ?>"
+                method="get"
+                data-bind="submit: onSubmit">
+                <div class="field search">
+                    <label class="label" for="search" data-role="minisearch-label">
+                        <span><?php echo __('Search') ?></span>
+                    </label>
+
+                    <div class="control">
+
+                        <input id="search"
+                            type="text"
+                            name="<?php echo $helper->getQueryParamName() ?>"
+                            value="<?php echo $helper->getEscapedQueryText() ?>"
+                            placeholder="<?php echo __($block->getTip()) ?>"
+                            class="input-text"
+                            role="combobox"
+                            aria-haspopup="false"
+                            aria-autocomplete="both"
+                            autocomplete="off"
+                            data-role="minisearch-input"
+                            data-bind="
+                                value: query,
+                                valueUpdate: 'afterkeydown',
+                                hasFocus: _hasFocus,
+                                event: { keydown: onKeyDown }
+                            "/>
+
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+
+                        <?php echo $block->getChildHtml() ?>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="submit"
+                        title="<?php echo $block->escapeHtml(__('Search')) ?>"
+                        class="action search">
+                        <span><?php echo __('Search') ?></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    <?php echo \Zend_Json_Encoder::encode($block->getJsConfig()) ?>
+</script>

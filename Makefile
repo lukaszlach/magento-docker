@@ -1,30 +1,55 @@
+VERSION ?= 1.9
+
 default: restart
 
-rebuild: show_rebuild_warning stop build start composer wait_15 magento_install start
+rebuild: show_rebuild_warning stop build-$(VERSION) start wait_15 install-$(VERSION) start
 
-build:
+build-2.1:
+	export MAGENTO_VERSION=2.1
+	export MAGENTO_VERSION_SHORT=2
 	# create directories
 	sudo rm -rf www/ && mkdir www/
 	sudo rm -rf mysql/data/ && mkdir mysql/data
 	sudo rm -rf sphinxsearch/data/ && mkdir sphinxsearch/data
-	sudo rm -rf grafana/data/ && mkdir grafana/data
 	# extract
 	cd ./www/; \
-	find ../install/ -name "Magento-CE-*.tar.gz" | head -n 1 | xargs tar zxf; \
+	find ../install/ -name "Magento-CE-*.tar.gz" -name "*$(VERSION)*" | head -n 1 | xargs tar zxf
+	cd ./www/; \
 	chmod -R 777 var/ app/etc pub/media pub/static; \
 	find bin/ -type f | xargs chmod +x
+	# container configuration
+	cp nginx/config/2.1/nginx-web.conf nginx/config/nginx-web.conf
 	# build images
 	docker-compose build
 
+install-2.1:
+	make composer
+	docker-compose run php_cli sh /srv/assets/magento2-install
+
+build-1.9:
+	export MAGENTO_VERSION=1.9
+	export MAGENTO_VERSION_SHORT=1
+	# create directories
+	sudo rm -rf www/ && mkdir www/
+	sudo rm -rf mysql/data/ && mkdir mysql/data
+	sudo rm -rf sphinxsearch/data/ && mkdir sphinxsearch/data
+	# extract
+	cd ./www/; \
+	find ../install/ -name "*.tar.gz" -name "*$(VERSION)*" | head -n 1 | xargs tar zxf
+	cd ./www/; \
+	chmod -R 777 var/ app/etc
+	# container configuration
+	cp nginx/config/1.9/nginx-web.conf nginx/config/nginx-web.conf
+	# build images
+	docker-compose build
+
+install-1.9:
+	docker exec -u root php bash -c "echo '$$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx) magento.local' >> /etc/hosts"
+	docker exec -u www-data php sh /srv/assets/magento1-install
+	docker exec -u root nginx chown -R www-data:www-data /srv/www
+
 composer:
 	docker exec php composer install -v
-
-magento_install:
-	docker-compose run php_cli sh /srv/assets/magento-install
-	docker-compose run php_cli php -dmemory_limit=1G bin/magento setup:static-content:deploy -l pl_PL
-	#docker exec php chmod -R 777 var/ pub/static/
-	docker-compose run php_cli php bin/magento deploy:mode:set developer
-	docker-compose run php_cli php bin/magento indexer:reindex
 
 start:
 	docker-compose up -d --remove-orphans
@@ -64,11 +89,7 @@ sphinx_cmd:
 sphinx_logs:
 	docker logs -f sphinx
 
-magento_cli:
-	echo $@
-	docker exec php bin/magento
-
 show_rebuild_warning:
 	echo "Rebuilding in 5 seconds"
 	echo "This will destroy ALL your data"
-	#sleep 5
+	sleep 5

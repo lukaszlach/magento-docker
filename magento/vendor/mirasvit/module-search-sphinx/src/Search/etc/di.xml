@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--registering indexes-->
+    <type name="Mirasvit\Search\Model\Index\Pool">
+        <arguments>
+            <argument name="indexes" xsi:type="array">
+                <item name="magento_catalog_product" xsi:type="string">Mirasvit\Search\Model\Index\Magento\Catalog\Product\Index</item>
+                <item name="magento_catalog_category" xsi:type="string">Mirasvit\Search\Model\Index\Magento\Catalog\Category\Index</item>
+                <item name="magento_cms_page" xsi:type="string">Mirasvit\Search\Model\Index\Magento\Cms\Page\Index</item>
+                <item name="external_wordpress_post" xsi:type="string">Mirasvit\Search\Model\Index\External\Wordpress\Post\Index</item>
+                <item name="mirasvit_blog_post" xsi:type="string">Mirasvit\Search\Model\Index\Mirasvit\Blog\Post\Index</item>
+                <item name="mirasvit_kb_article" xsi:type="string">Mirasvit\Search\Model\Index\Mirasvit\Kb\Article\Index</item>
+                <item name="magefan_blog_post" xsi:type="string">Mirasvit\Search\Model\Index\Magefan\Blog\Post\Index</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--registering index providers for NATIVE magento mysql search-->
+    <!--Extension can works without SearchMysql, SearchSphinx, SearchElastic-->
+    <type name="Magento\Framework\Search\Adapter\Mysql\Mapper">
+        <arguments>
+            <argument name="indexProviders" xsi:type="array">
+                <item name="magento_catalog_category" xsi:type="object">Mirasvit\Search\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="magento_cms_page" xsi:type="object">Mirasvit\Search\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="external_wordpress_post" xsi:type="object">Mirasvit\Search\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="mirasvit_blog_post" xsi:type="object">Mirasvit\Search\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="mirasvit_kb_article" xsi:type="object">Mirasvit\Search\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="magefan_blog_post" xsi:type="object">Mirasvit\Search\Model\Adapter\Mapper\IndexBuilder</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--registering data providers for NATIVE magento mysql search-->
+    <type name="Magento\Framework\Search\Adapter\Mysql\Aggregation\DataProviderContainer">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="magento_catalog_category" xsi:type="object">Mirasvit\Search\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="magento_cms_page" xsi:type="object">Mirasvit\Search\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="external_wordpress_post" xsi:type="object">Mirasvit\Search\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="mirasvit_blog_post" xsi:type="object">Mirasvit\Search\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="mirasvit_kb_article" xsi:type="object">Mirasvit\Search\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="magefan_blog_post" xsi:type="object">Mirasvit\Search\Model\Adapter\Aggregation\DataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--Read adapter/engine from our config-->
+    <type name="Magento\Search\Model\AdapterFactory">
+        <arguments>
+            <argument name="path" xsi:type="const">Mirasvit\Search\Model\ResourceModel\EngineInterface::CONFIG_ENGINE_PATH</argument>
+            <argument name="scopeType" xsi:type="const">\Magento\Store\Model\ScopeInterface::SCOPE_STORE</argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory">
+        <arguments>
+            <argument name="configPath" xsi:type="const">Mirasvit\Search\Model\ResourceModel\EngineInterface::CONFIG_ENGINE_PATH</argument>
+        </arguments>
+    </type>
+
+    <!--add afterRebuildStoreIndex-->
+    <!--<type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\Full">-->
+        <!--<plugin name="searchRebuildPlugin" type="Mirasvit\Search\Model\Index\Magento\Catalog\Product\RebuildPlugin"/>-->
+    <!--</type>-->
+
+    <!--<type name="Magento\CatalogSearch\Model\Indexer\IndexerHandler">-->
+        <!--<plugin name="searchRebuildPlugin" type="Mirasvit\Search\Model\Index\Magento\Catalog\Product\RebuildPlugin"/>-->
+    <!--</type>-->
+
+    <!--after full reindex-->
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext">
+        <plugin name="search" type="Mirasvit\Search\Model\Search\IndexerPlugin"/>
+    </type>
+
+    <!--register request for custom search indexes-->
+    <type name="Magento\Framework\Search\Request\Config\FilesystemReader">
+        <plugin name="searchIndexFields" type="Mirasvit\Search\Model\Search\ReaderPlugin"/>
+    </type>
+
+    <!--register console commands-->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="SynonymCommand" xsi:type="object">Mirasvit\Search\Console\Command\SynonymCommand</item>
+                <item name="StopwordCommand" xsi:type="object">Mirasvit\Search\Console\Command\StopwordCommand</item>
+                <item name="ReindexCommand" xsi:type="object">Mirasvit\Search\Console\Command\ReindexCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,17 @@
+<!-- ko if: image -->
+<img data-bind="attr: {src: image}"/>
+<!-- /ko -->
+
+<a class="title" data-bind="html: name, attr: {href: url}, highlight"></a>
+
+<!-- ko if: description -->
+<div class="description" data-bind="text: description, highlight"></div>
+<!-- /ko -->
+
+<!-- ko if: price > 0 -->
+<div data-bind="text: price, price" class="price"></div>
+<!-- /ko -->
+
+<!-- ko if: rating -->
+<div data-bind="html: rating"></div>
+<!-- /ko -->

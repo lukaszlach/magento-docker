@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Mirasvit\Core\Api\UrlRewriteHelperInterface" type="Mirasvit\Core\Helper\UrlRewrite" />
+    <preference for="Mirasvit\Core\Api\ImageHelperInterface" type="Mirasvit\Core\Helper\Image" />
+    <preference for="Mirasvit\Core\Api\CronHelperInterface" type="Mirasvit\Core\Helper\Cron" />
+    <preference for="Mirasvit\Core\Api\TextHelperInterface" type="Mirasvit\Core\Helper\Text" />
+    <preference for="Mirasvit\Core\Api\ParseVariablesHelperInterface" type="Mirasvit\Core\Helper\ParseVariables" />
+
+    <type name="Magento\Framework\App\FrontController">
+        <plugin name="dispatch" type="Mirasvit\Core\Model\Plugin\RegisterUrlRewrite" sortOrder="1000"/>
+    </type>
+</config>
