@@ -1,0 +1,4 @@
+alertmanager/* linguist-vendored
+curator/* linguist-vendored
+prometheus/* linguist-vendored
+gitlab/config/gitlab.rb linguist-vendored
