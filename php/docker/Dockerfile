@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
-    libpng12-dev \
+    libpng-dev \
     libxslt1.1 libxslt1-dev \
     libicu-dev \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
