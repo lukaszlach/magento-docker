@@ -3,7 +3,7 @@
     "colinmollenhour/modman": "~1.11",
     "composer/composer": "~1.0@dev",
     "n98/magerun": "~1.9",
-    "phpdocumentor/phpdocumentor": "~2.8",
+    "phpdocumentor/phpdocumentor": "2.9.0",
     "phploc/phploc": "~2.1",
     "phpmd/phpmd": "~2.2",
     "phpunit/phpunit": "~4.6",
